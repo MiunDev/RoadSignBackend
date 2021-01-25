@@ -1,5 +1,6 @@
 package ru.malkollm.springbootbackend.controller;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -8,7 +9,9 @@ import ru.malkollm.springbootbackend.exception.ResourceNotFoundException;
 import ru.malkollm.springbootbackend.model.Employee;
 import ru.malkollm.springbootbackend.repository.EmployeeRepository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -51,5 +54,18 @@ public class EmployeeController {
         Employee updatedEmployee = employeeRepository.save(employee);
 
         return ResponseEntity.ok(updatedEmployee);
+    }
+
+    //delete employee rest api
+    @DeleteMapping("/employees/{id}")
+    public ResponseEntity<Map<String, Boolean>> deleteEmployee(@PathVariable Long id) {
+        Employee employee = employeeRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id: " + id));
+
+        employeeRepository.delete(employee);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+
+        return ResponseEntity.ok(response);
     }
 }
