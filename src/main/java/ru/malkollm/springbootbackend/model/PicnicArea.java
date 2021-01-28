@@ -11,7 +11,7 @@ public class PicnicArea {
     @Column(name = "name_set")
     private String nameSet;
     @Column(name = "total_count_set")
-    private String totalCountSet;
+    private int totalCountSet;
     @Column(name = "name_place_picnic")
     private String namePlacePicnic;
     @Column(name = "address_landmark")
@@ -30,7 +30,7 @@ public class PicnicArea {
     public PicnicArea() {
     }
 
-    public PicnicArea(String nameSet, String totalCountSet, String namePlacePicnic, String addressLandmark, String serviceProvider, String phone, String photo, String geoobjectName, String geocord) {
+    public PicnicArea(String nameSet, int totalCountSet, String namePlacePicnic, String addressLandmark, String serviceProvider, String phone, String photo, String geoobjectName, String geocord) {
         this.nameSet = nameSet;
         this.totalCountSet = totalCountSet;
         this.namePlacePicnic = namePlacePicnic;
@@ -58,11 +58,11 @@ public class PicnicArea {
         this.nameSet = nameSet;
     }
 
-    public String getTotalCountSet() {
+    public int getTotalCountSet() {
         return totalCountSet;
     }
 
-    public void setTotalCountSet(String totalCountSet) {
+    public void setTotalCountSet(int totalCountSet) {
         this.totalCountSet = totalCountSet;
     }
 
